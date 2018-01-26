@@ -1,1 +1,15 @@
-<h2>testing</h2>
+<div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= content_for?(:panel_heading) ? yield(:panel_heading) : "About" %>
+    </div>
+    <div class="panel-body">
+      <p>
+        Welcome to BloomSense Admin Panel.
+
+        The admin panel is for managing sensor values created via an API from any Arduino board connected to the internet.
+
+      </p>
+    </div>
+  </div>
+</div>
