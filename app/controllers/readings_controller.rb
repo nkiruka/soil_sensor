@@ -48,6 +48,6 @@ class ReadingsController < ApplicationController
   private
   # Only allow permitted values.
   def reading_params
-    params.require(:reading).permit(:sensor_id, :value)
+    params.require(:reading).permit(:sensor_id, :value, :plant_id)
   end
 end
