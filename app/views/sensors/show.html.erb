@@ -1,0 +1,95 @@
+<h2>Show Details</h2>
+
+<% content_for(:page_header) do %>
+  <%= "Sensor detail" %>
+<% end %>
+<% content_for :panel_heading do %><%= @sensor.name %><% end %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sensor.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sensor.description %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @sensor.model %>
+</p>
+
+<table class="table table-striped">
+  <tr>
+    <th "text-center">Sensor ID</th>
+    <th "text-center">Value</th>
+    <th "text-center">Created At</th>
+  </tr>
+  <% @paginated_readings.each do |reading| %>
+  <tr>
+    <td "text-center"><%= "#{reading.sensor.id}" %></td>
+    <td "text-center"><%= "#{reading.value}" %></td>
+    <td class="text-center"><span class="time-stamp"><%= "#{reading.interval_timestamp}" %></span></td>
+  </tr>
+  <% end %>
+  <nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item <%= disable_previous(params[:page]) %>">
+      <% if previous_link_valid?(params[:page]) %>
+        <%= link_to "Previous", sensor_path(@sensor, page: params[:page].to_i - 1 ), class: "page-link #{disable_previous(params[:page])}" %>
+      <% else %>
+        <%= link_to "Previous", "#", class: "page-link" %>
+      <% end %>
+    </li>
+    <% (1..@total_pages).to_a.each do |num| %>
+
+      <li class="page-item"><%= link_to "#{num}", sensor_path(@sensor, page: num), class: 'page-link' %></li>
+
+    <% end %>
+    <li class="page-item <%= disable_next(@current_page, @total_pages) %>">
+      <% if next_link_valid?(@current_page, @total_pages) %>
+        <%= link_to "Next", sensor_path(@sensor, page: params[:page].to_i + 1), class: "page-link #{disable_next(@current_page, @total_pages)}" %>
+      <% else %>
+        <%= link_to "Next", "#", class: "page-link" %>
+      <% end %>
+    </li>
+  </ul>
+</nav>
+
+
+  <%#= will_paginate @readings, renderer: BootstrapPagination::Rails %>
+</table>
+
+<% unless @sensor_readings.blank? %>
+  <div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Sensor Evolution
+      </div>
+      <div class="panel-body">
+        <div id="sensor-evolution" style="height: 250px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <% content_for(:extra_scripts) do %>
+    <script type="text/javascript">
+    $(document).ready(function (){
+      new Morris.Area({
+        element: 'sensor-evolution',
+        data: <%= raw @sensor_readings.to_json %>,
+        xkey: 'time',
+        ykeys: ['value'],
+        labels: ['Value'],
+        pointSize: 2,
+        resize: true
+      });
+    });
+
+    setTimeout(function() {
+      window.location.reload();
+    }, 7000);
+    </script>
+  <% end %>
+<% end %>
