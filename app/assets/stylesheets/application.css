@@ -20,3 +20,12 @@
 .action-buttons {
   text-align: right;
 }
+
+p {
+    font-size:  15px;
+    /* color: #337ab7; */
+}
+
+/* .exceed-threshold {
+  background-color: #e93732;
+} */
