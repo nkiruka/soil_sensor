@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   get 'dashboard', to: 'home#index'
+  get 'about', to: 'home#about'
 
   resources :sensors
   resources :readings
