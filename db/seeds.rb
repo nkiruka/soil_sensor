@@ -6,18 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Plant.create!([
-  {name: "Spider Plant", threshold: 80},
-  {name: "English Ivy", threshold: 60},
-  {name: "Heather Plant", threshold: 40},
-  {name: "Kalachoe", threshold: 30}
-  ])
+p1 = Plant.create!({name: "Spider Plant", threshold: 80})
+p2 = Plant.create!({name: "English Ivy", threshold: 60})
+p3 = Plant.create!({name: "Heather Plant", threshold: 40})
+p4 = Plant.create!({name: "Kalachoe", threshold: 30})
+
 
 Sensor.create!([
-  {name: "Sensor 1", description: "moisture ", model: "Y-161",plant_id: Plant.first},
-  {name: "Sensor 2", description: "moisture", model: "Y-161",plant_id: Plant.find(2)},
-  {name: "Sensor 3", description: "moisture", model: "Y-161", plant_id: Plant.find(3)},
-  {name: "Sensor 4", description: "moisture", model: "Y-161", plant_id: Plant.first}
+  {name: "Sensor 1", description: "moisture ", model: "Y-161",plant: Plant.first},
+  {name: "Sensor 2", description: "moisture", model: "Y-161",plant: Plant.find(2)},
+  {name: "Sensor 3", description: "moisture", model: "Y-161", plant: Plant.find(3)},
+  {name: "Sensor 4", description: "moisture", model: "Y-161", plant: Plant.first}
 ])
 
 sensor1 = Sensor.first
@@ -26,25 +25,25 @@ sensor3 = Sensor.find(3)
 sensor4 = Sensor.last
 
 Reading.create!([
-  {sensor_id: 1,value: 50, plant_id: 1, created_at: Time.now},
-  {sensor_id: 1,value: 55, plant_id: 1,created_at: Time.now+2},
-  {sensor_id: 1,value: 60, plant_id: 1,created_at: Time.now+3},
-  {sensor_id: 1,value: 65, plant_id: 1,created_at: Time.now+4},
-  {sensor_id: 1,value: 70, plant_id: 1,created_at: Time.now+5},
-  {sensor_id: 1,value: 75, plant_id: 1,created_at: Time.now+6},
-  {sensor_id: 1,value: 80, plant_id: 1,created_at: Time.now+7},
-  {sensor_id: 1,value: 85, plant_id: 1,created_at: Time.now+8},
-  {sensor_id: 1,value: 90, plant_id: 1,created_at: Time.now+9},
-  {sensor_id: 1,value: 95, plant_id: 1,created_at: Time.now+10},
-  {sensor_id: 2, value:30, plant_id: 2,created_at: Time.now},
-  {sensor_id: 2, value: 29, plant_id: 2,created_at: Time.now+2},
-  {sensor_id: 2, value: 29, plant_id: 2,created_at: Time.now+3},
-  {sensor_id: 2, value: 28, plant_id: 2,created_at: Time.now+4},
-  {sensor_id: 2, value: 20, plant_id: 2,created_at: Time.now+5},
-  {sensor_id: 2, value: 30, plant_id: 2,created_at: Time.now+6},
-  {sensor_id: 2, value: 31, plant_id: 2,created_at: Time.now+7},
-  {sensor_id: 2, value: 31, plant_id: 2,created_at: Time.now+8},
-  {sensor_id: 2, value: 32, plant_id: 2,created_at: Time.now+9},
-  {sensor_id: 3, value:30, plant_id: 3,created_at: Time.now},
-  {sensor_id: 4, value: 29, plant_id: 4,created_at: Time.now+2}
+  {sensor: sensor1,value: 50, plant: p1, created_at: Time.now},
+  {sensor: sensor1,value: 55, plant: p1,created_at: Time.now+2},
+  {sensor: sensor1,value: 60, plant: p1,created_at: Time.now+3},
+  {sensor: sensor1,value: 65, plant: p1,created_at: Time.now+4},
+  {sensor: sensor1,value: 70, plant: p1,created_at: Time.now+5},
+  {sensor: sensor1,value: 75, plant: p1,created_at: Time.now+6},
+  {sensor: sensor1,value: 80, plant: p1,created_at: Time.now+7},
+  {sensor: sensor1,value: 85, plant: p1,created_at: Time.now+8},
+  {sensor: sensor1,value: 90, plant: p1,created_at: Time.now+9},
+  {sensor: sensor1,value: 95, plant: p1,created_at: Time.now+10},
+  {sensor: sensor2, value:30, plant: p2,created_at: Time.now},
+  {sensor: sensor2, value: 29, plant: p2,created_at: Time.now+2},
+  {sensor: sensor2, value: 29, plant: p2,created_at: Time.now+3},
+  {sensor: sensor2, value: 28, plant: p2,created_at: Time.now+4},
+  {sensor: sensor2, value: 20, plant: p2,created_at: Time.now+5},
+  {sensor: sensor2, value: 30, plant: p2,created_at: Time.now+6},
+  {sensor: sensor2, value: 31, plant: p2,created_at: Time.now+7},
+  {sensor: sensor2, value: 31, plant: p2,created_at: Time.now+8},
+  {sensor: sensor2, value: 32, plant: p2,created_at: Time.now+9},
+  {sensor: sensor3, value:30, plant: p3,created_at: Time.now},
+  {sensor: sensor4, value: 29, plant: p4,created_at: Time.now+2}
 ])
