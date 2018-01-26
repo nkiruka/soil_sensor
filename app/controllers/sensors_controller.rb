@@ -12,9 +12,9 @@ class SensorsController < ApplicationController
   def create
     sensor = Sensor.new(sensor_params)
     if sensor.save
-      render json: { id: sensor.id }, status: :ok
+    render json: { id: sensor.id }, status: :ok
     else
-      render json: { errors: sensor.errors.messages },
+    render json: { errors: sensor.errors.messages },
       status: :bad_request
     end
   end
@@ -42,10 +42,11 @@ class SensorsController < ApplicationController
     @per_page = params[:per_page]
 
     @sensor_readings = @sensor.readings.select(select_statment)
-    .group("sensor_id, interval_timestamp")
-    .order("interval_timestamp desc")
-    .map{|m| { time: m.interval_timestamp,
-      value: m.value } }
+                              .group("sensor_id, interval_timestamp")
+                              .order("interval_timestamp desc")
+                              .map{|m| { time: m.interval_timestamp,
+                                          value: m.value } }
+
   end
 
   def edit
@@ -77,10 +78,7 @@ class SensorsController < ApplicationController
   end
 
   private
-
-  # Only allow what is required.
   def sensor_params
-    params.require(:sensor).permit(:name, :type, :model)
+    params.require(:sensor).permit(:name, :description, :model)
   end
-
 end
