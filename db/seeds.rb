@@ -14,10 +14,10 @@ Plant.create!([
   ])
 
 Sensor.create!([
-  {name: "Sensor 1", description: "moisture ", model: "Y-161",plant_id: plant.first},
-  {name: "Sensor 2", description: "moisture", model: "Y-161",plant_id: plant.find(2)},
-  {name: "Sensor 3", description: "moisture", model: "Y-161", plant_id: plant.find(3)},
-  {name: "Sensor 4", description: "moisture", model: "Y-161", plant_id: plant.first}
+  {name: "Sensor 1", description: "moisture ", model: "Y-161",plant_id: Plant.first},
+  {name: "Sensor 2", description: "moisture", model: "Y-161",plant_id: Plant.find(2)},
+  {name: "Sensor 3", description: "moisture", model: "Y-161", plant_id: Plant.find(3)},
+  {name: "Sensor 4", description: "moisture", model: "Y-161", plant_id: Plant.first}
 ])
 
 sensor1 = Sensor.first
