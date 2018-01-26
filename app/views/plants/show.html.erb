@@ -1,0 +1,35 @@
+<% content_for(:page_header) do %>
+  <%= "Plant details" %>
+<% end %>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-3">
+      <div class="col-md-6">
+        <p>Plant Name: <span><%= @plant.name %></span></p>
+      </div>
+      <div class="col-md-6">
+          <p>Threshold: <span><%= @plant.threshold %></span></p>
+      </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top:20px">
+<div class="col-md-8 col-md-offset-2">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">Sensor ID</th>
+          <th class="text-center">Sensor Reading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @plant.readings.each do |reading| %>
+          <tr class="<%= "danger" if ("#{reading.value}" > "#{@plant.threshold}") %>">
+            <td class="text-center"><%= "#{reading.sensor.id}" %></td>
+            <td class="text-center"><%= "#{reading.value}" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+</table>
+</div>
+</div>
