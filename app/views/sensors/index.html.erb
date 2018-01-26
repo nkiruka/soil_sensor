@@ -9,7 +9,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Type</th>
+      <th>Description</th>
       <th>Model</th>
       <th></th>
     </tr>
@@ -19,7 +19,7 @@
     <% @sensors.each do |sensor| %>
       <tr>
         <td><%= sensor.name %></td>
-        <td><%= sensor.type %></td>
+        <td><%= sensor.description %></td>
         <td><%= sensor.model %></td>
         <td class="action-buttons">
           <%= link_to 'Show', sensor_path(sensor.id), class: 'btn btn-success' %>
